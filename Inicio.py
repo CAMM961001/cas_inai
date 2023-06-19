@@ -21,3 +21,5 @@ st.set_page_config(
 
 ajustes.fijar_ancho_barra_lateral()
 
+with st.sidebar:
+    st.title('Inicio')
