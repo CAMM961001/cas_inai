@@ -1,0 +1,9 @@
+pyyaml
+numpy
+pandas
+matplotlib
+jupyterlab
+ipywidgets
+streamlit
+pytrends
+Unidecode
