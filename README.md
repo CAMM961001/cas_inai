@@ -6,6 +6,8 @@
     - [Métodos de API](#métodos-de-api)
 - [Arquitectura general](#arquitectura-general)
 - [Entorno virtual](#entorno-virtual)
+    - [Windows Powershell](#windows-powershell)
+    - [Linux Bash](#linux-bash)
 
 # Descripción del problema
 
@@ -61,13 +63,21 @@ Para satisfacer propósitos del proyecto, se realizarán consultas a la API a tr
 
 Se utiliza un entorno virtual local debido a que este proyecto pertenece a un programa mucho más grande. Por este motivo, se utiliza el módulo para entornos virtuales de python `venv`. Para configurar el entorno de trabajo, se debe seguir los siguientes pasos:
 
+## Windows Powershell
+
 1. Abrir una terminal.
 2. Crear un entorno virtual con el comando `python -m venv <nombre-del-entorno>`
 
-Windows Powershell:
-
 >python -m venv venv
 
-Linux Bash:
+3. Activar el entorno con el comando `.\<nombre-del-entorno>\Scripts\Activate.ps1`
+
+>.\venv\Scripts\Activate.ps1
+
+4. Instalar paquetes de entorno con el comando `pip install -r <archivo-de-paquetes.txt>`
+
+>pip install -r environment.txt
+
+## Linux Bash
 
 >python3 -m venv venv
