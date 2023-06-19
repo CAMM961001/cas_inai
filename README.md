@@ -1,10 +1,10 @@
 # Contenido
 
 -   [Descripción del problema](#descripción-del-problema)
+    -   [Glosario de términos](#glosario-de-términos)
 -   [Pytrends](#pytrends)
     -   [Métodos de API](#métodos-de-api)
 -   [Arquitectura general](#arquitectura-general)
--   [Diccionario de términos](#diccionario-de-términos)
 
 # Descripción del problema
 
@@ -15,6 +15,10 @@ Proyecto de adquisición y monitoreo de datos de Google Trends para el Centro de
 -   Basado en tecnología abierta.
 
 Para satisfacer los puntos anteriores, se determinó utilizar la API de Python para consultar información de GoogleTrends.
+
+## Glosario de términos
+
+- Criterio de búsqueda: Palabra o serie de palabras que usualmente se buscarían en un motor como Google o Firefox. 
 
 # Pytrends
 
@@ -51,7 +55,3 @@ Para satisfacer propósitos del proyecto, se realizarán consultas a la API a tr
 # Arquitectura general
 
 ![adquisicion-datos](/diagramas/arquitectura_general.drawio.png)
-
-# Diccionario de términos
-
-- Criterio de búsqueda: Palabra o serie de palabras que usualmente se buscarían en un motor como Google o Firefox. 
