@@ -10,3 +10,10 @@ tema:
 app:
   titulo: "CAS - INAI"
   paginas: ["Visualizaciones", "Consultas"]
+
+datos:
+  dirname: "datos"
+  criterios:
+    dirname: "criterios_busqueda"
+    workfile: "criterios_busqueda.txt"
+    historico: "historico"
