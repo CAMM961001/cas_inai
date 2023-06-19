@@ -1,7 +1,12 @@
 import os
 import yaml
 
-from streamlit import markdown
+from streamlit import write
+
+
+def guardar_archivo(path:str):
+    promtp = f'Archivo almacenado en la ruta: <br><b>{path}</b>'
+    write(promtp, unsafe_allow_html = True)
 
 
 class Ajustes:
@@ -28,6 +33,6 @@ class Ajustes:
             }'''
 
         # Indicar a streamlit ancho fijo
-        markdown(
-            body = _html_str_
+        write(
+            _html_str_
             ,unsafe_allow_html = True)
