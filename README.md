@@ -61,7 +61,7 @@ Para satisfacer propósitos del proyecto, se realizarán consultas a la API a tr
 
 # Entorno virtual
 
-Se utiliza un entorno virtual local debido a que este proyecto pertenece a un programa mucho más grande. Por este motivo, se utiliza el módulo para entornos virtuales de python `venv`. Para configurar el entorno de trabajo, se debe seguir los siguientes pasos:
+Se utiliza un entorno virtual local debido a que este proyecto pertenece a un programa mucho más grande. Por este motivo, se utiliza el módulo para entornos virtuales de python `venv`. Para configurar el entorno de trabajo, se debe seguir los siguientes pasos
 
 ## Windows Powershell
 
@@ -80,4 +80,15 @@ Se utiliza un entorno virtual local debido a que este proyecto pertenece a un pr
 
 ## Linux Bash
 
+1. Abrir una terminal.
+2. Crear un entorno virtual con el comando `python3 -m venv <nombre-del-entorno>`
+
 >python3 -m venv venv
+
+3. Activar el entorno con el comando `source <nombre-del-entorno>/bin/activate`
+
+>source venv/bin/activate
+
+4. Instalar paquetes de entorno con el comando `pip3 install -r <archivo-de-paquetes.txt>`
+
+>pip3 install -r environment.txt
