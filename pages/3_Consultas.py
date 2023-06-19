@@ -73,7 +73,7 @@ with st.sidebar:
 
     # Carga de archivo de criterios de búsqueda
     nuevos_criterios_busqueda = st.file_uploader(
-        label = 'Carga de archivo de criterios de búsqueda:'
+        label = 'Cargar archivo:'
         ,type = 'txt'
         ,accept_multiple_files = False
         ,help = '''Carga aquí tu archivo de criterios de búsqueda cuando
