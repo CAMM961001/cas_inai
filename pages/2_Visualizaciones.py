@@ -1,5 +1,9 @@
+# ---------------------------------------------------------- CARGA DE LIBRERÍAS
+
+
 import os
 import sys
+import streamlit as st
 
 # Ruta absoluta de directorio actual
 DIR_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -9,10 +13,6 @@ SRC_PATH = os.path.join(DIR_PATH, '..', 'src')
 
 # Agregar ruta de módulo al path
 sys.path.append(SRC_PATH)
-
-
-# Carga de librerías
-import streamlit as st
 
 from ajustes import Ajustes
 

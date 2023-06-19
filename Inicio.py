@@ -1,3 +1,6 @@
+# ---------------------------------------------------------- CARGA DE LIBRERÍAS
+
+
 import streamlit as st
 
 from src.ajustes import Ajustes
@@ -7,7 +10,6 @@ from src.ajustes import Ajustes
 
 
 ajustes = Ajustes()
-
 
 # Site settings
 st.set_page_config(
