@@ -1,7 +1,5 @@
 import streamlit as st
 
-from streamlit_option_menu import option_menu
-
 from src.ajustes import Ajustes
 
 
@@ -9,6 +7,7 @@ from src.ajustes import Ajustes
 
 
 ajustes = Ajustes()
+
 
 # Site settings
 st.set_page_config(
@@ -20,15 +19,5 @@ st.set_page_config(
 # --------------------------------------------------------------- BARRA LATERAL
 
 
-# HTML para barra lateral de ancho fijo
-_html_str_ = '''
-<style>
-    [data-testid="stSidebar"][aria-expanded="true"]{
-        min-width: 325px;
-        max-width: 325px;
-    }'''
+ajustes.fijar_ancho_barra_lateral()
 
-# Indicar a streamlit ancho fijo
-st.markdown(
-    body = _html_str_
-    ,unsafe_allow_html = True)
