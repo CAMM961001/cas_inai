@@ -18,6 +18,8 @@ from ajustes import Ajustes
 
 
 # ----------------------------------------------------------- AJUSTES GENERALES
+
+# Carga de ajuste generales
 ajustes = Ajustes()
 
 # Site settings
@@ -30,14 +32,34 @@ st.set_page_config(
 st.title(body = 'Consultas')
 
 
+# -------------------------------------------- LECTURA DE CRITERIOS DE BÚSQUEDA
+CRITERIOS = os.path.join(
+    ajustes.ROOT
+    ,ajustes.config['datos']['dirname']
+    ,ajustes.config['datos']['criterios']['dirname']
+    ,ajustes.config['datos']['criterios']['workfile'])
+
+try:
+    with open(file = CRITERIOS, mode='r') as file:
+        CRITERIOS = file.read()
+    file.close()
+
+    print(CRITERIOS)
+
+except FileNotFoundError:
+    st.write(f'''
+        <br>No existe el archivo
+        <b>{ajustes.config['datos']['criterios']['workfile']}</b>
+        en la ruta: <b>{CRITERIOS}</b></br>
+        <br>Utiliza la barra lateral para cargar un archivo de criterios de
+        búsqueda.</br>'''
+        ,unsafe_allow_html=True)
+   
+
 # --------------------------------------------------------------- BARRA LATERAL
 ajustes.fijar_ancho_barra_lateral()
 
 with st.sidebar:
-    
-    # Título de la página
-    st.header(
-        body = 'Acciones')
 
     # Descripción de la página
     st.write('''
@@ -70,29 +92,28 @@ with st.sidebar:
         
         # Generar lista de nuevos criterios
         __criterios__ = __archivo__.read().splitlines()
+        
+        # Vista previa de nuevos criterios como cadena de caracteres
+        vista_previa = ', '.join(__criterios__[:2]) 
+        vista_previa += ', ..., ' + ', '.join(__criterios__[-2:])
 
-        # Respaldar archivo anterior
+        st.write('Se detectaron los siguientes criterios:')
+        st.write(f'''<b>{vista_previa}</b>''', unsafe_allow_html = True)
 
+        # Mensaje de confirmación
+        st.write('''
+            <p style="text-align: justify">
+                Al seleccionar esta opción el archivo que cargaste
+                será el nuevo documento de referencia, haciendo que los cambios
+                en la aplicación sean permamentes</p>'''
+            ,unsafe_allow_html=True)
+        
+        # Botón de confirmación
+        st.button(
+            label = 'Entiendo, guardar cambios'
+            ,type = 'primary'
+            ,use_container_width = True)
 
-# -------------------------------------------- LECTURA DE CRITERIOS DE BÚSQUEDA
-CRITERIOS = os.path.join(
-    ajustes.ROOT
-    ,ajustes.config['datos']['dirname']
-    ,ajustes.config['datos']['criterios']['dirname']
-    ,ajustes.config['datos']['criterios']['workfile'])
-
-try:
-    with open(file = CRITERIOS, mode='r') as file:
-        CRITERIOS = file.read()
-    file.close()
-
-    print(CRITERIOS)
-
-except FileNotFoundError:
-    st.write(f'''
-        <br>No existe el archivo
-        <b>{ajustes.config['datos']['criterios']['workfile']}</b>
-        en la ruta: <b>{CRITERIOS}</b></br>
-        <br>Utiliza la barra lateral para cargar un archivo de criterios de
-        búsqueda.</br>'''
-        ,unsafe_allow_html=True)
+        # Respaldar archivo anterior si existe
+        if os.path.isfile(path = CRITERIOS):
+            print('Existe')        
