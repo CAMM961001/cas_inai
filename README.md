@@ -4,6 +4,7 @@
 -   [Pytrends](#pytrends)
     -   [Métodos de API](#métodos-de-api)
 -   [Adquisición de datos](#adquisición-de-datos)
+-   [Diccionario de términos](#diccionario-de-términos)
 
 # Descripción del problema
 
@@ -47,5 +48,8 @@ Para satisfacer propósitos del proyecto, se realizarán consultas a la API a tr
 
 # Adquisición de datos
 
-![adquisicion-datos](/diagramas_flujo/adquisicion_datos_trends_api.drawio.png)
+![adquisicion-datos](/diagramas/arquitectura_general.drawio.png)
 
+# Diccionario de términos
+
+- Criterio de búsqueda: Palabra o serie de palabras que usualmente se buscarían en un motor como Google o Firefox. 
