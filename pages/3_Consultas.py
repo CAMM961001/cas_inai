@@ -14,12 +14,13 @@ SRC_PATH = os.path.join(DIR_PATH, '..', 'src')
 # Agregar ruta de módulo al path
 sys.path.append(SRC_PATH)
 
+from ajustes import guardar_archivo
 from ajustes import Ajustes
 
 
 # ----------------------------------------------------------- AJUSTES GENERALES
 
-# Carga de ajuste generales
+# Carga de ajustes generales
 ajustes = Ajustes()
 
 # Site settings
@@ -41,11 +42,10 @@ CRITERIOS = os.path.join(
 
 try:
     with open(file = CRITERIOS, mode='r') as file:
-        CRITERIOS = file.read()
+        __criterios__ = file.read()
     file.close()
 
-    print(CRITERIOS)
-
+# Excepción de archivo de criterios de búsqueda inexistente
 except FileNotFoundError:
     st.write(f'''
         <br>No existe el archivo
@@ -91,11 +91,11 @@ with st.sidebar:
             .decode("utf-8")))
         
         # Generar lista de nuevos criterios
-        __criterios__ = __archivo__.read().splitlines()
+        __criterios__ = __archivo__.read()
         
         # Vista previa de nuevos criterios como cadena de caracteres
-        vista_previa = ', '.join(__criterios__[:2]) 
-        vista_previa += ', ..., ' + ', '.join(__criterios__[-2:])
+        vista_previa = ', '.join(__criterios__.splitlines()[:2])
+        vista_previa += ', ..., ' + ', '.join(__criterios__.splitlines()[-2:])
 
         st.write('Se detectaron los siguientes criterios:')
         st.write(f'''<b>{vista_previa}</b>''', unsafe_allow_html = True)
@@ -103,7 +103,7 @@ with st.sidebar:
         # Mensaje de confirmación
         st.write('''
             <p style="text-align: justify">
-                Al seleccionar esta opción el archivo que cargaste
+                Al seleccionar esta opción, el archivo que cargaste
                 será el nuevo documento de referencia, haciendo que los cambios
                 en la aplicación sean permamentes</p>'''
             ,unsafe_allow_html=True)
@@ -112,8 +112,6 @@ with st.sidebar:
         st.button(
             label = 'Entiendo, guardar cambios'
             ,type = 'primary'
+            ,on_click = guardar_archivo
+            ,kwargs = {'contenido': __criterios__, 'path': CRITERIOS, 'formato': 'txt'}
             ,use_container_width = True)
-
-        # Respaldar archivo anterior si existe
-        if os.path.isfile(path = CRITERIOS):
-            print('Existe')        
