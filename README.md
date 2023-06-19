@@ -5,6 +5,7 @@
 - [Pytrends](#pytrends)
     - [Métodos de API](#métodos-de-api)
 - [Arquitectura general](#arquitectura-general)
+- [Entorno virtual](#entorno-virtual)
 
 # Descripción del problema
 
@@ -55,3 +56,18 @@ Para satisfacer propósitos del proyecto, se realizarán consultas a la API a tr
 # Arquitectura general
 
 ![adquisicion-datos](/diagramas/arquitectura_general.drawio.png)
+
+# Entorno virtual
+
+Se utiliza un entorno virtual local debido a que este proyecto pertenece a un programa mucho más grande. Por este motivo, se utiliza el módulo para entornos virtuales de python `venv`. Para configurar el entorno de trabajo, se debe seguir los siguientes pasos:
+
+1. Abrir una terminal.
+2. Crear un entorno virtual con el comando `python -m venv <nombre-del-entorno>`
+
+Windows Powershell:
+
+>python -m venv venv
+
+Linux Bash:
+
+>python3 -m venv venv
