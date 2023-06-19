@@ -1,12 +1,25 @@
 import os
 import yaml
+import shutil
 
 from streamlit import write
+from datetime import datetime
 
 
 def guardar_archivo(path:str):
-    promtp = f'Archivo almacenado en la ruta: <br><b>{path}</b>'
-    write(promtp, unsafe_allow_html = True)
+    # Respaldar archivo anterior si existe
+    if os.path.isfile(path = path):
+        # Extraer nombre original del archivo
+        dst = path.partition('.txt')[0]
+        
+        # Agregar sufijo de fecha de respaldo
+        dst += f"_{datetime.now().strftime('%Y%m%d%-H%M%S')}.txt"
+        
+        # Mover archivo de carpeta de históricos
+        shutil.move(src=path, dst=dst)
+
+    prompt = f'Archivo almacenado en la ruta: <br><b>{path}</b>'
+    write(prompt, unsafe_allow_html = True)
 
 
 class Ajustes:
