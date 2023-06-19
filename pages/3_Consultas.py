@@ -36,4 +36,35 @@ st.set_page_config(
 ajustes.fijar_ancho_barra_lateral()
 
 with st.sidebar:
-    st.title('Consultas')
+    
+    # Título de la página
+    st.header(
+        body = 'Acciones')
+
+    # Descripción de la página
+    st.write('''
+        <p style="text-align: justify">
+            <br>Utiliza las funciones de esta página para explorar los
+            criterios de búsqueda de los cuales se tiene información.</br>
+            <br>Utiliza la siguiente funcionalidad si deseas cargar un nuevo
+            archivo de criterios de búsqueda.</br>
+        </p>'''
+        ,unsafe_allow_html = True)
+
+    # Acciones de la página
+    archivo_criterio_busqueda = st.file_uploader(
+        label = 'Carga de archivo de criterios de búsqueda:'
+        ,type = 'txt'
+        ,accept_multiple_files = False
+        ,help = '''Carga aquí tu archivo de criterios de búsqueda cuando existan
+        modificaciones a la información desplegada actualmente''')
+    
+
+
+
+# ----------------------------------------------------------- CARGA DE ARCHIVOS
+
+
+if __name__ == '__main__':
+    print(archivo_criterio_busqueda)
+    print(type(archivo_criterio_busqueda))
