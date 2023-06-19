@@ -3,16 +3,18 @@
 -   [Descripción del problema](#descripción-del-problema)
 -   [Pytrends](#pytrends)
     -   [Métodos de API](#métodos-de-api)
--   [Adquisición de datos](#adquisición-de-datos)
+-   [Arquitectura general](#arquitectura-general)
 -   [Diccionario de términos](#diccionario-de-términos)
 
 # Descripción del problema
 
-Proyecto de adquisición y monitoreo de datos de Google Trends para el Centro de Atención a la Sociedad del Instituto Nacional de Acceso a la Información y Protección de Datos Personales, INAI. Se definireron los siguientes requisitos que debe satisfacer la API:
+Proyecto de adquisición y monitoreo de datos de Google Trends para el Centro de Atención a la Sociedad del Instituto Nacional de Acceso a la Información y Protección de Datos Personales, INAI. Se definireron los siguientes requisitos que deben satisfacer las consultas a la API:
 
--   Hacer consultas histróricas con palabras clave
--   Hacer consultas en tiempo real
--   API preferentemente libre
+-   Hacer consultas histróricas utilizando palabras clave.
+-   Tener capacidad de hacer consultas bajo demanda.
+-   Basado en tecnología abierta.
+
+Para satisfacer los puntos anteriores, se determinó utilizar la API de Python para consultar información de GoogleTrends.
 
 # Pytrends
 
@@ -46,7 +48,7 @@ Para satisfacer propósitos del proyecto, se realizarán consultas a la API a tr
 >-  Temas top
 >-  Temas en aumento
 
-# Adquisición de datos
+# Arquitectura general
 
 ![adquisicion-datos](/diagramas/arquitectura_general.drawio.png)
 
