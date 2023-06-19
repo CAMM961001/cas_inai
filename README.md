@@ -1,10 +1,10 @@
 # Contenido
 
--   [Descripción del problema](#descripción-del-problema)
-    -   [Glosario de términos](#glosario-de-términos)
--   [Pytrends](#pytrends)
-    -   [Métodos de API](#métodos-de-api)
--   [Arquitectura general](#arquitectura-general)
+- [Descripción del problema](#descripción-del-problema)
+    - [Glosario de términos](#glosario-de-términos)
+- [Pytrends](#pytrends)
+    - [Métodos de API](#métodos-de-api)
+- [Arquitectura general](#arquitectura-general)
 
 # Descripción del problema
 
