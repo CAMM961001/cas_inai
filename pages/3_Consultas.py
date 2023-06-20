@@ -32,7 +32,7 @@ st.set_page_config(
 
 # Título de la pagina
 st.title(body = 'Consultas')
-
+st.write('---')
 
 # -------------------------------------------- LECTURA DE CRITERIOS DE BÚSQUEDA
 CRITERIOS = os.path.join(
@@ -61,11 +61,13 @@ except FileNotFoundError:
    
 
 # --------------------------------------------------------------- BARRA LATERAL
+
+# Ancho de barra lateral
 ajustes.fijar_ancho_barra_lateral()
 
 with st.sidebar:
 
-    # Descripción de la página
+    # Descripción de la barra lateral
     st.write('''
         <p style="text-align: justify">
             <br>Utiliza las funciones de esta página para explorar los
@@ -97,9 +99,10 @@ with st.sidebar:
                 ))
         
         # Generar lista de nuevos criterios
-        __criterios__ = [linea.strip() for linea in __archivo__.read().splitlines() if linea.strip()]
-
-        # Eliminar filas en blanco
+        __criterios__ = [
+            linea.strip()
+            for linea in __archivo__.read().splitlines()
+            if linea.strip()]
         
         # Vista previa de nuevos criterios como cadena de caracteres
         vista_previa = ', '.join(__criterios__[:2])
@@ -121,17 +124,50 @@ with st.sidebar:
             label = 'Entiendo, guardar cambios'
             ,type = 'primary'
             ,on_click = guardar_archivo
-            ,kwargs = {'contenido': __criterios__, 'path': CRITERIOS, 'formato': 'txt'}
+            ,kwargs = {
+                'contenido': __criterios__
+                ,'path': CRITERIOS
+                ,'formato': 'txt'}
             ,use_container_width = True)
 
 if __criterios__ != None:
     
-    # Generar tabla con criterios de búsqueda enlistados
-    df_ = pd.DataFrame(
-        data = {
-            'Criterios': __criterios__
-        })
-    
-    st.dataframe(
-        data = df_
-        ,use_container_width = True)
+    # Ordenar lista de criterios de búsqeuda
+    __criterios__.sort()
+
+
+# --------------------------------------------------------- RESUMEN DE CONSULTA
+    with st.container():
+        # Encabezado de sección
+        st.header(
+            body = 'Resumen de consultas')
+
+        # Descripción de sección
+        st.write(
+            '''
+            <p style="text-align: justify">
+            La siguiente tabla es un resumen de las consultas realizadas
+            para cada uno de los criterios enlistados en el archivo
+            <b>criterios_busqueda.txt</b>. En las filas se encuentran
+            los criterios de búsqueda, mientras que en las columnas
+            se indica el tipo de consulta en cuestión. Los criterios se
+            pueden encontrar en 2 estados:
+            <ul>
+                <li>Verdadero: Se cuenta con información de ese criterio
+                del tipo de consulta en cuestión</li>
+                <li>Falso: No se cuente con información de ese criterio para
+                la consulta dada</li>
+            </ul>
+            </p>'''
+            ,unsafe_allow_html = True)
+        
+        df_ = pd.DataFrame(
+            data = {
+                'Interes Tiempo': False
+                ,'Interes Region': False
+                ,'Temas Relacionados': False}
+            ,index = __criterios__)
+        
+        st.dataframe(
+            data = df_
+            ,use_container_width = True)
