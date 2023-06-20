@@ -44,7 +44,7 @@ CRITERIOS = os.path.join(
 try:
     # Abrir archivo de criterios de búsqueda
     with open(file = CRITERIOS, mode='r') as file:
-        __criterios__ = file.read()
+        __criterios__ = file.read().splitlines()
     file.close()
 
 # Excepción de archivo de criterios de búsqueda inexistente
@@ -88,20 +88,23 @@ with st.sidebar:
     # Acciones si existe nuevo archivo de criterios de búsqueda
     if nuevos_criterios_busqueda is not None:
         
+        print(type(nuevos_criterios_busqueda))
         # Leer archivo cargado como cadena de caracteres
         __archivo__ = StringIO(
             initial_value = (
                 nuevos_criterios_busqueda
                 .getvalue()
-                .decode("utf-8"))
-            ,newline = None)
+                .decode("utf-8")
+                ))
         
         # Generar lista de nuevos criterios
-        __criterios__ = __archivo__.read()
+        __criterios__ = [linea.strip() for linea in __archivo__.read().splitlines() if linea.strip()]
+
+        # Eliminar filas en blanco
         
         # Vista previa de nuevos criterios como cadena de caracteres
-        vista_previa = ', '.join(__criterios__.splitlines()[:2])
-        vista_previa += ', ..., ' + ', '.join(__criterios__.splitlines()[-2:])
+        vista_previa = ', '.join(__criterios__[:2])
+        vista_previa += ', ..., ' + ', '.join(__criterios__[-2:])
 
         st.write('Se detectaron los siguientes criterios:')
         st.write(f'''<b>{vista_previa}</b>''', unsafe_allow_html = True)
@@ -127,9 +130,9 @@ if __criterios__ != None:
     # Generar tabla con criterios de búsqueda enlistados
     df_ = pd.DataFrame(
         data = {
-            'criterio': __criterios__.splitlines()
+            'Criterios': __criterios__
         })
-
+    
     st.dataframe(
         data = df_
         ,use_container_width = True)

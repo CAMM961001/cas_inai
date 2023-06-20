@@ -44,7 +44,7 @@ def guardar_archivo(contenido:str, path:str, formato = 'txt'):
     
     # Escribir nuevo archivo
     with open(file = path, mode = 'w') as file:
-        file.write(contenido)
+        file.write('\n'.join(contenido))
     file.close()
 
     # Mensaje de confirmación
