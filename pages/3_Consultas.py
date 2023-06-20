@@ -1,6 +1,7 @@
 # ---------------------------------------------------------- CARGA DE LIBRERÍAS
 import os
 import sys
+import pandas as pd
 import streamlit as st
 
 from io import StringIO
@@ -41,12 +42,15 @@ CRITERIOS = os.path.join(
     ,ajustes.config['datos']['criterios']['workfile'])
 
 try:
+    # Abrir archivo de criterios de búsqueda
     with open(file = CRITERIOS, mode='r') as file:
         __criterios__ = file.read()
     file.close()
 
 # Excepción de archivo de criterios de búsqueda inexistente
 except FileNotFoundError:
+    __criterios__ = None
+
     st.write(f'''
         <br>No existe el archivo
         <b>{ajustes.config['datos']['criterios']['workfile']}</b>
@@ -85,10 +89,12 @@ with st.sidebar:
     if nuevos_criterios_busqueda is not None:
         
         # Leer archivo cargado como cadena de caracteres
-        __archivo__ = StringIO(initial_value = (
-            nuevos_criterios_busqueda
-            .getvalue()
-            .decode("utf-8")))
+        __archivo__ = StringIO(
+            initial_value = (
+                nuevos_criterios_busqueda
+                .getvalue()
+                .decode("utf-8"))
+            ,newline = None)
         
         # Generar lista de nuevos criterios
         __criterios__ = __archivo__.read()
@@ -115,3 +121,15 @@ with st.sidebar:
             ,on_click = guardar_archivo
             ,kwargs = {'contenido': __criterios__, 'path': CRITERIOS, 'formato': 'txt'}
             ,use_container_width = True)
+
+if __criterios__ != None:
+    
+    # Generar tabla con criterios de búsqueda enlistados
+    df_ = pd.DataFrame(
+        data = {
+            'criterio': __criterios__.splitlines()
+        })
+
+    st.dataframe(
+        data = df_
+        ,use_container_width = True)
