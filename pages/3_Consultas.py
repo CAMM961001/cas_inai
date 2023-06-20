@@ -88,7 +88,6 @@ with st.sidebar:
     # Acciones si existe nuevo archivo de criterios de búsqueda
     if nuevos_criterios_busqueda is not None:
         
-        print(type(nuevos_criterios_busqueda))
         # Leer archivo cargado como cadena de caracteres
         __archivo__ = StringIO(
             initial_value = (
